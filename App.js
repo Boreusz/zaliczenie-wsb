@@ -1,20 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { transactions } from './src/constants/data';
+import HomeScreen from './src/screens/HomeScreen';
 
 export default function App() {
+  const user = {
+    name: "testUser"
+  }
+  const [allTransactions, setAllTransactions] = useState(transactions)
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <>
+      <HomeScreen user={user} transactions={allTransactions}/>
       <StatusBar style="auto" />
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
