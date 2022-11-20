@@ -19,11 +19,11 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name='Home' options={{ headerShown: false }}>
           {(props) => (
-            <HomeScreen {...props} user={user} transactions={allTransactions} />
+            <HomeScreen {...props} user={user} transactions={allTransactions} setTransactions={(newTrs) => setAllTransactions(newTrs)}/>
           )}
         </Stack.Screen>
         <Stack.Screen name='Statistics'>
-          {(props) => <StatisticsScreen {...props} />}
+          {(props) => <StatisticsScreen {...props} transactions={allTransactions}/>}
         </Stack.Screen>
         <Stack.Screen name='Transaction'>
           {(props) => (

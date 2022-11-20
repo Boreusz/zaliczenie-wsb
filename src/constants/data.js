@@ -56,6 +56,7 @@ export const transactions = [
   { id: 10, name: 'Catering', category: 'Food', value: '-1200' },
   { id: 11, name: 'Cleaning stuff', category: 'Others', value: '-200' },
   { id: 12, name: 'Uber', category: 'Transport', value: '-30' },
+  { id: 13, name: 'Salary', category: 'Incomes', value: '16000' },
 ]
 export const categories = [
   {

@@ -7,8 +7,9 @@ import Category from './components/category'
 import Transaction from './components/transaction'
 import values from '../../constants/values'
 import { categories } from '../../constants/data'
+import CustomButton from '../../components/customButton'
 
-const HomeScreen = ({ navigation, user, transactions }) => {
+const HomeScreen = ({ navigation, user, transactions, setTransactions }) => {
   const [displayedTransactions, setDisplayedTransactions] =
     useState(transactions)
   const [chosenCategory, setChosenCategory] = useState('')
@@ -38,14 +39,34 @@ const HomeScreen = ({ navigation, user, transactions }) => {
         <Spacer height={20} />
         <Text style={values.h2Style}>Categories</Text>
         <Spacer height={20} />
-        <Button
-          title='New Transaction'
-          onPress={() => navigation.navigate('Transaction')}
-        />
-        <Button
-          title='Statistics'
-          onPress={() => navigation.navigate('Statistics')}
-        />
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            gap: 20,
+          }}
+        >
+          <CustomButton
+            width={160}
+            height={40}
+            radius={5}
+            textSize={16}
+            text='New Transaction'
+            backgroundColor='#265fd1'
+            onPress={() => navigation.navigate('Transaction')}
+          />
+          <CustomButton
+            width={160}
+            height={40}
+            radius={5}
+            textSize={16}
+            text='Statistics'
+            backgroundColor='#265fd1'
+            onPress={() => navigation.navigate('Statistics')}
+          />
+        </View>
         <Spacer height={20} />
         <Text style={values.h2Style}>Categories</Text>
         <Spacer height={20} />
@@ -71,7 +92,10 @@ const HomeScreen = ({ navigation, user, transactions }) => {
 
       <View style={styles.horizontalPaddingView}>
         <Spacer height={20} />
-        <Text style={values.h2Style}>Transactions History</Text>
+        <Text style={values.h2Style}>
+          Transactions History
+          {chosenCategory !== '' ? ` (${chosenCategory})` : ''}
+        </Text>
         <Spacer height={20} />
         <FlatList
           data={displayedTransactions}
@@ -80,7 +104,14 @@ const HomeScreen = ({ navigation, user, transactions }) => {
           renderItem={({ item }) => (
             <Transaction
               transaction={item}
-              onPress={() => console.warn(`Clicked ${item.name}`)}
+              onPress={() => {
+                setTransactions(
+                  transactions.filter((trans) => trans.id !== item.id)
+                )
+                setDisplayedTransactions(
+                  transactions.filter((trans) => trans.id !== item.id)
+                )
+              }}
             />
           )}
           ListEmptyComponent={

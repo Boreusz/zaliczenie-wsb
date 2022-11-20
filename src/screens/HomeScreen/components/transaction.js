@@ -27,7 +27,7 @@ const Transaction = ({ transaction, onPress }) => {
         height={25}
         radius={5}
         textSize={12}
-        text='Details'
+        text='Delete'
         backgroundColor={colors.orage}
         onPress={() => onPress(transaction.heading)}
       />
