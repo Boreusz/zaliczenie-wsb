@@ -26,7 +26,14 @@ export default function App() {
           {(props) => <StatisticsScreen {...props} />}
         </Stack.Screen>
         <Stack.Screen name='Transaction'>
-          {(props) => <TransactionScreen {...props} />}
+          {(props) => (
+            <TransactionScreen
+              {...props}
+              addTransaction={(transaction) =>
+                setAllTransactions([transaction, ...allTransactions,])
+              }
+            />
+          )}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
